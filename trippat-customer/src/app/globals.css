@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+/* Trippat Brand Colors & Variables */
+:root {
+  /* Trippat Brand Colors */
+  --trippat-primary-1: #113c5a;     /* Main Color 1 */
+  --trippat-primary-2: #f0ee8a;     /* Main Color 2 */
+  --trippat-secondary-1: #a1cee8;   /* Secondary Color 1 */
+  --trippat-secondary-2: #4391a3;   /* Secondary Color 2 */
+  --trippat-secondary-3: #ffffff;   /* Secondary Color 3 */
+  
+  /* Semantic color mappings for Tailwind v4 */
+  --color-primary: #113c5a;
+  --color-primary-50: #e6ecf0;
+  --color-primary-100: #c0d1db;
+  --color-primary-200: #8bafc4;
+  --color-primary-300: #5d8fad;
+  --color-primary-400: #3a6f96;
+  --color-primary-500: #113c5a;
+  --color-primary-600: #0e334e;
+  --color-primary-700: #0b2a42;
+  --color-primary-800: #082236;
+  --color-primary-900: #05192a;
+  
+  --color-secondary: #f0ee8a;
+  --color-secondary-50: #fdfdf5;
+  --color-secondary-100: #fbfbe6;
+  --color-secondary-200: #f7f6c4;
+  --color-secondary-300: #f3f2a2;
+  --color-secondary-400: #f0ee8a;
+  --color-secondary-500: #e8e65f;
+  --color-secondary-600: #d9d635;
+  --color-secondary-700: #b8b328;
+  --color-secondary-800: #8f8a20;
+  --color-secondary-900: #5e5a15;
+  
+  --color-accent: #4391a3;
+  --color-accent-50: #edf5f7;
+  --color-accent-100: #d4e7ec;
+  --color-accent-200: #a9cfd9;
+  --color-accent-300: #7eb7c6;
+  --color-accent-400: #5ba4b5;
+  --color-accent-500: #4391a3;
+  --color-accent-600: #357482;
+  --color-accent-700: #2a5a65;
+  --color-accent-800: #1f424a;
+  --color-accent-900: #162e34;
+  
+  /* UI Colors */
+  --background: #ffffff;
+  --foreground: #113c5a;
+  --card: #ffffff;
+  --card-foreground: #113c5a;
+  --popover: #ffffff;
+  --popover-foreground: #113c5a;
+  --primary: #113c5a;
+  --primary-foreground: #ffffff;
+  --secondary: #f0ee8a;
+  --secondary-foreground: #113c5a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #4391a3;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #f1f5f9;
+  --ring: #4391a3;
+  
+  /* Status colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #a1cee8;
+  
+  /* Arabic Font Variables */
+  --font-inter: 'Inter', sans-serif;
+  --font-noto-sans-arabic: 'Noto Sans Arabic', sans-serif;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: var(--font-noto-sans-arabic);
+}
+
+[dir="ltr"] {
+  font-family: var(--font-inter);
+}
+
+/* Arabic Typography */
+.arabic-text {
+  font-family: var(--font-noto-sans-arabic);
+  line-height: 1.8;
+  word-spacing: 0.1em;
+}
+
+/* RTL Layout Adjustments */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .rtl-space-reverse {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .rtl-text-right {
+  text-align: right;
+}
+
+[dir="ltr"] .rtl-text-right {
+  text-align: left;
+}
+
+/* Chat Interface RTL */
+[dir="rtl"] .chat-bubble-user {
+  margin-left: 0;
+  margin-right: auto;
+  border-radius: 1rem 1rem 0.25rem 1rem;
+}
+
+[dir="rtl"] .chat-bubble-assistant {
+  margin-right: 0;
+  margin-left: auto;
+  border-radius: 1rem 1rem 1rem 0.25rem;
+}
+
+[dir="ltr"] .chat-bubble-user {
+  margin-right: 0;
+  margin-left: auto;
+  border-radius: 1rem 1rem 0.25rem 1rem;
+}
+
+[dir="ltr"] .chat-bubble-assistant {
+  margin-left: 0;
+  margin-right: auto;
+  border-radius: 1rem 1rem 1rem 0.25rem;
+}
+
+/* Form Input RTL */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] textarea {
+  text-align: right;
+  padding-right: 0.75rem;
+  padding-left: 2.5rem;
+}
+
+[dir="rtl"] .input-icon-left {
+  right: 0.75rem;
+  left: auto;
+}
+
+[dir="rtl"] .input-icon-right {
+  left: 0.75rem;
+  right: auto;
+}
+
+/* Navigation RTL */
+[dir="rtl"] .nav-item {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+[dir="rtl"] .nav-item:first-child {
+  margin-left: 0;
+}
+
+/* Button RTL */
+[dir="rtl"] .btn-icon-left {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .btn-icon-right {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* Card RTL */
+[dir="rtl"] .card-content {
+  text-align: right;
+}
+
+/* Dropdown RTL */
+[dir="rtl"] .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+/* Modal RTL */
+[dir="rtl"] .modal-content {
+  text-align: right;
+}
+
+/* Custom styles for the travel website */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Loading animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+/* Button hover effects */
+.btn-hover-lift {
+  transition: all 0.3s ease;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Image hover effects */
+.img-hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.img-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Trippat Brand Gradients */
+.trippat-gradient {
+  background: linear-gradient(135deg, var(--trippat-primary-1) 0%, var(--trippat-secondary-2) 100%);
+}
+
+.trippat-gradient-light {
+  background: linear-gradient(135deg, var(--trippat-secondary-1) 0%, var(--trippat-primary-2) 100%);
+}
+
+.trippat-gradient-text {
+  background: linear-gradient(135deg, var(--trippat-primary-1) 0%, var(--trippat-secondary-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Custom focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  --tw-ring-color: var(--trippat-secondary-2);
+}
+
+/* Tailwind v4 color utilities */
+@layer utilities {
+  .bg-primary { background-color: var(--color-primary); }
+  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-accent { background-color: var(--color-accent); }
+  .text-primary { color: var(--color-primary); }
+  .text-secondary { color: var(--color-secondary); }
+  .text-accent { color: var(--color-accent); }
+  .border-primary { border-color: var(--color-primary); }
+  .border-secondary { border-color: var(--color-secondary); }
+  .border-accent { border-color: var(--color-accent); }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Amazing Riyadh Heritage Tour",
+  "title_ar": "جولة تراثية رائعة في الرياض",
+  "description": "Explore the rich heritage and culture of Saudi Arabia's capital city",
+  "description_ar": "اكتشف التراث الغني والثقافة لعاصمة المملكة العربية السعودية",
+  "destination": "Riyadh, Saudi Arabia",
+  "destination_ar": "الرياض، المملكة العربية السعودية",
+  "duration": 3,
+  "price": 1500,
+  "priceAdult": 1500,
+  "priceChild": 750,
+  "priceInfant": 0,
+  "category": "regular",
+  "tags": ["heritage", "culture", "history", "saudi"],
+  "inclusions": [
+    "Professional tour guide",
+    "Hotel pickup and drop-off",
+    "Entrance fees to all attractions",
+    "Traditional Saudi lunch"
+  ],
+  "inclusions_ar": [
+    "مرشد سياحي محترف",
+    "النقل من وإلى الفندق",
+    "رسوم الدخول لجميع المعالم",
+    "غداء سعودي تقليدي"
+  ],
+  "exclusions": [
+    "Personal expenses",
+    "Tips and gratuities"
+  ],
+  "exclusions_ar": [
+    "المصاريف الشخصية",
+    "البقشيش والإكراميات"
+  ],
+  "itinerary": "Day 1: Historical Diriyah\nDay 2: National Museum & Murabba Palace\nDay 3: Traditional Souks & Kingdom Tower",
+  "itinerary_ar": "اليوم 1: الدرعية التاريخية\nاليوم 2: المتحف الوطني وقصر المربع\nاليوم 3: الأسواق التقليدية وبرج المملكة",
+  "tourType": "Group",
+  "difficulty": "easy",
+  "maxTravelers": 15,
+  "availability": true
+}

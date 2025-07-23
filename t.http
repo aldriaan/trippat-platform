@@ -1,0 +1,90 @@
+### === ADMIN DASHBOARD TESTING SUITE ===
+
+### 1. Check API Documentation (includes admin routes)
+GET http://localhost:3001
+Content-Type: application/json
+
+### 2. Login as Admin User
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@trippat.com",
+  "password": "admin123"
+}
+
+### 3. Test Admin Dashboard Stats
+GET http://localhost:3001/api/admin/dashboard/stats
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 4. Test User Analytics
+GET http://localhost:3001/api/admin/analytics/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 5. Test Booking Analytics
+GET http://localhost:3001/api/admin/analytics/bookings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 6. Test Revenue Analytics
+GET http://localhost:3001/api/admin/analytics/revenue
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 7. Test Package Analytics
+GET http://localhost:3001/api/admin/analytics/packages
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 8. Test User Management List
+GET http://localhost:3001/api/admin/users?page=1&limit=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 9. Test System Health Monitoring
+GET http://localhost:3001/api/admin/system/health
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 10. Test Recent Activity
+GET http://localhost:3001/api/admin/activity/recent
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 11. Test Data Export (Users)
+GET http://localhost:3001/api/admin/export/users?format=json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### 12. Test Customer Login (for comparison)
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@trippat.com",
+  "password": "password123"
+}
+
+### 13. Test Unauthorized Admin Access (should fail)
+GET http://localhost:3001/api/admin/dashboard/stats
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1MTQzNDBjNjE4YzQ4OGRkNjZhNiIsImVtYWlsIjoidGVzdEB0cmlwcGF0LmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc1MjUyOTAzNiwiZXhwIjoxNzUyNjE1NDM2fQ.BwNR6p-aahutQhwsNEiXzD7jzXQdirMJVAwXrNbYldI
+
+
+### Test basic export route
+GET http://localhost:3001/api/admin/export/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+### Test with format in URL path (if route supports it)
+GET http://localhost:3001/api/admin/export/users/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjg4ODcsImV4cCI6MTc1MjYxNTI4N30.Q7Mq7R7244sTMsQU8YIubwEquF2kxLekLTnEs8Y6aDU
+
+
+
+### Test Data Export (Users) - FIXED
+GET http://localhost:3001/api/admin/export/users?format=json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjk3NDgsImV4cCI6MTc1MjYxNjE0OH0.gHLUL_K6JhYbIbdFrXQXmJ0FsDg45L9WYOyaUKTniIM
+
+### Test Export Bookings
+GET http://localhost:3001/api/admin/export/bookings?format=json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjk3NDgsImV4cCI6MTc1MjYxNjE0OH0.gHLUL_K6JhYbIbdFrXQXmJ0FsDg45L9WYOyaUKTniIM
+
+### Test Export Packages
+GET http://localhost:3001/api/admin/export/packages?format=json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjk3NDgsImV4cCI6MTc1MjYxNjE0OH0.gHLUL_K6JhYbIbdFrXQXmJ0FsDg45L9WYOyaUKTniIM
+
+### Test CSV Export
+GET http://localhost:3001/api/admin/export/users?format=csv
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI1Mjk3NDgsImV4cCI6MTc1MjYxNjE0OH0.gHLUL_K6JhYbIbdFrXQXmJ0FsDg45L9WYOyaUKTniIM

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاتورة - {{invoiceNumber}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            direction: rtl;
+        }
+        
+        .invoice-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .invoice-header {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .invoice-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .invoice-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .invoice-details {
+            padding: 30px;
+        }
+        
+        .invoice-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .invoice-meta > div {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .invoice-meta h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+        
+        .invoice-meta p {
+            margin: 5px 0;
+            color: #666;
+        }
+        
+        .invoice-meta strong {
+            color: #333;
+        }
+        
+        .booking-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .booking-details h3 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .services-table th {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: right;
+            font-weight: bold;
+        }
+        
+        .services-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .services-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .services-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .amount-cell {
+            text-align: left;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .price-summary {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .price-summary h3 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .price-row:last-child {
+            border-bottom: none;
+        }
+        
+        .price-row.total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .payment-info {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-right: 4px solid #28a745;
+        }
+        
+        .payment-info h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .payment-info p {
+            margin: 5px 0;
+            color: #155724;
+        }
+        
+        .terms-conditions {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-right: 4px solid #ffc107;
+        }
+        
+        .terms-conditions h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .terms-conditions ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+        
+        .terms-conditions li {
+            margin: 5px 0;
+            color: #856404;
+        }
+        
+        .invoice-footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .invoice-footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+        
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code img {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: white;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        
+        .signature-box {
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #333;
+            margin-bottom: 10px;
+            height: 60px;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .invoice-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .invoice-header {
+                background: #007bff !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .invoice-meta {
+                flex-direction: column;
+            }
+            
+            .invoice-meta > div {
+                min-width: 100%;
+            }
+            
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-table {
+                font-size: 14px;
+            }
+            
+            .services-table th,
+            .services-table td {
+                padding: 10px;
+            }
+            
+            .signature-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>{{brandName}}</h1>
+            <p>فاتورة خدمات السفر والسياحة</p>
+        </div>
+        
+        <div class="invoice-details">
+            <div class="invoice-meta">
+                <div>
+                    <h3>معلومات الفاتورة</h3>
+                    <p><strong>رقم الفاتورة:</strong> {{invoiceNumber}}</p>
+                    <p><strong>تاريخ الإصدار:</strong> {{issueDate}}</p>
+                    <p><strong>تاريخ الاستحقاق:</strong> {{dueDate}}</p>
+                    <p><strong>حالة الدفع:</strong> {{paymentStatus}}</p>
+                </div>
+                
+                <div>
+                    <h3>معلومات العميل</h3>
+                    <p><strong>الاسم:</strong> {{customerName}}</p>
+                    <p><strong>البريد الإلكتروني:</strong> {{customerEmail}}</p>
+                    <p><strong>رقم الهاتف:</strong> {{customerPhone}}</p>
+                    {{#if customerAddress}}
+                    <p><strong>العنوان:</strong> {{customerAddress}}</p>
+                    {{/if}}
+                </div>
+                
+                <div>
+                    <h3>معلومات الشركة</h3>
+                    <p><strong>{{brandName}}</strong></p>
+                    <p>شركة خدمات السفر والسياحة</p>
+                    <p>{{companyAddress}}</p>
+                    <p>هاتف: {{companyPhone}}</p>
+                    <p>البريد الإلكتروني: {{companyEmail}}</p>
+                    {{#if vatNumber}}
+                    <p><strong>الرقم الضريبي:</strong> {{vatNumber}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            
+            <div class="booking-details">
+                <h3>تفاصيل الحجز</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">رقم الحجز:</span>
+                        <span class="detail-value">{{bookingId}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">اسم الحزمة:</span>
+                        <span class="detail-value">{{packageTitle}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">الوجهة:</span>
+                        <span class="detail-value">{{destination}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">المدة:</span>
+                        <span class="detail-value">{{duration}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">تاريخ البداية:</span>
+                        <span class="detail-value">{{startDate}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">تاريخ النهاية:</span>
+                        <span class="detail-value">{{endDate}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">عدد المسافرين:</span>
+                        <span class="detail-value">{{travelerCount}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">نوع الحجز:</span>
+                        <span class="detail-value">{{bookingType}}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <table class="services-table">
+                <thead>
+                    <tr>
+                        <th>الوصف</th>
+                        <th>الكمية</th>
+                        <th>السعر الأساسي</th>
+                        <th>المجموع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>حزمة سفر - {{packageTitle}}</td>
+                        <td>{{travelerCount}} مسافر</td>
+                        <td class="amount-cell">{{packagePricePerPerson}}</td>
+                        <td class="amount-cell">{{packageTotalPrice}}</td>
+                    </tr>
+                    {{#each additionalServices}}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td class="amount-cell">{{this.price}}</td>
+                        <td class="amount-cell">{{this.total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            
+            <div class="price-summary">
+                <h3>ملخص الأسعار</h3>
+                <div class="price-row">
+                    <span>المبلغ الأساسي:</span>
+                    <span>{{subtotal}}</span>
+                </div>
+                {{#if discount}}
+                <div class="price-row">
+                    <span>خصم {{discountPercentage}}%:</span>
+                    <span>-{{discount}}</span>
+                </div>
+                {{/if}}
+                {{#if taxes}}
+                <div class="price-row">
+                    <span>ضريبة القيمة المضافة ({{taxRate}}%):</span>
+                    <span>{{taxes}}</span>
+                </div>
+                {{/if}}
+                {{#if serviceFee}}
+                <div class="price-row">
+                    <span>رسوم الخدمة:</span>
+                    <span>{{serviceFee}}</span>
+                </div>
+                {{/if}}
+                <div class="price-row total">
+                    <span>إجمالي المبلغ المستحق:</span>
+                    <span>{{totalAmount}}</span>
+                </div>
+            </div>
+            
+            {{#if paymentInfo}}
+            <div class="payment-info">
+                <h4>معلومات الدفع</h4>
+                <p><strong>طريقة الدفع:</strong> {{paymentMethod}}</p>
+                <p><strong>تاريخ الدفع:</strong> {{paymentDate}}</p>
+                <p><strong>رقم العملية:</strong> {{transactionId}}</p>
+                {{#if paymentReference}}
+                <p><strong>مرجع الدفع:</strong> {{paymentReference}}</p>
+                {{/if}}
+            </div>
+            {{/if}}
+            
+            {{#if qrCode}}
+            <div class="qr-code">
+                <h4>رمز QR للفاتورة</h4>
+                <img src="{{qrCode}}" alt="QR Code للفاتورة">
+            </div>
+            {{/if}}
+            
+            <div class="terms-conditions">
+                <h4>الشروط والأحكام</h4>
+                <ul>
+                    <li>يُرجى دفع الفاتورة في الموعد المحدد لتجنب أي رسوم إضافية</li>
+                    <li>جميع الأسعار شاملة ضريبة القيمة المضافة حسب النظام المعمول به</li>
+                    <li>في حالة الإلغاء، يتم تطبيق شروط الإلغاء المتفق عليها</li>
+                    <li>يُرجى الاحتفاظ بهذه الفاتورة كإثبات للدفع</li>
+                    <li>لأي استفسارات، يُرجى الاتصال بخدمة العملاء</li>
+                </ul>
+            </div>
+            
+            <div class="signature-section">
+                <div class="signature-box">
+                    <div class="signature-line"></div>
+                    <div class="signature-label">توقيع العميل</div>
+                </div>
+                <div class="signature-box">
+                    <div class="signature-line"></div>
+                    <div class="signature-label">توقيع الشركة</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="invoice-footer">
+            <p>شكراً لاختيارك {{brandName}} - نتطلع لخدمتك</p>
+            <p>© {{currentYear}} {{brandName}}. جميع الحقوق محفوظة</p>
+            <p>هذه فاتورة مُولدة إلكترونياً ولا تحتاج لتوقيع</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+### Create Package Test - Working Version
+### Base URL: http://localhost:5001/api
+
+@baseUrl = http://localhost:5001/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI5MzQzNzUsImV4cCI6MTc1MzAyMDc3NX0.7JGqs7LkaRKbs04k0qorfd0IB3KuQklY126bnBJAsXc
+
+### Create Package - Minimum Required Fields
+POST {{baseUrl}}/packages
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="title"
+
+Test Tour Package
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+This is a test tour package description
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="priceAdult"
+
+1000
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="duration"
+
+3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="category"
+
+regular
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Create Package - JSON Version (Alternative)
+POST {{baseUrl}}/packages
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Simple Test Tour",
+  "description": "This is a test tour package for API testing",
+  "priceAdult": 1000,
+  "duration": 3,
+  "category": "regular"
+}

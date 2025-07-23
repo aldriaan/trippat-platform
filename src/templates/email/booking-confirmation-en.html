@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - {{brandName}}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            direction: ltr;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #007bff;
+            margin: 0;
+            font-size: 28px;
+        }
+        .booking-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .booking-info h2 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .info-value {
+            color: #333;
+        }
+        .package-details {
+            margin-bottom: 20px;
+        }
+        .package-details h3 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .itinerary {
+            margin-bottom: 20px;
+        }
+        .itinerary-day {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+        .itinerary-day h4 {
+            color: #333;
+            margin: 0 0 8px 0;
+        }
+        .itinerary-day p {
+            margin: 0;
+            color: #666;
+        }
+        .price-summary {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .price-summary h3 {
+            color: #28a745;
+            margin-top: 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+            border-top: 2px solid #28a745;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .important-info {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        .important-info h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .important-info ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .important-info li {
+            margin-bottom: 5px;
+            color: #856404;
+        }
+        .contact-info {
+            background-color: #d4edda;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .contact-info h4 {
+            color: #155724;
+            margin-top: 0;
+        }
+        .contact-info p {
+            margin: 5px 0;
+            color: #155724;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 12px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .qr-code img {
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{brandName}}</h1>
+            <p>Trip Booking Confirmation</p>
+        </div>
+
+        <div class="booking-info">
+            <h2>Booking Information</h2>
+            <div class="info-row">
+                <span class="info-label">Booking ID:</span>
+                <span class="info-value">{{bookingId}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Booking Date:</span>
+                <span class="info-value">{{bookingDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Booking Status:</span>
+                <span class="info-value">{{bookingStatus}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Traveler Name:</span>
+                <span class="info-value">{{customerName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{customerEmail}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Phone:</span>
+                <span class="info-value">{{customerPhone}}</span>
+            </div>
+        </div>
+
+        <div class="package-details">
+            <h3>Package Details</h3>
+            <div class="info-row">
+                <span class="info-label">Package Name:</span>
+                <span class="info-value">{{packageTitle}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Destination:</span>
+                <span class="info-value">{{destination}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Duration:</span>
+                <span class="info-value">{{duration}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Start Date:</span>
+                <span class="info-value">{{startDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">End Date:</span>
+                <span class="info-value">{{endDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Number of Travelers:</span>
+                <span class="info-value">{{travelerCount}}</span>
+            </div>
+        </div>
+
+        {{#if itinerary}}
+        <div class="itinerary">
+            <h3>Trip Itinerary</h3>
+            {{#each itinerary}}
+            <div class="itinerary-day">
+                <h4>Day {{day}}: {{title}}</h4>
+                <p>{{description}}</p>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        <div class="price-summary">
+            <h3>Price Summary</h3>
+            <div class="price-row">
+                <span>Package Price ({{travelerCount}} travelers):</span>
+                <span>{{packagePrice}}</span>
+            </div>
+            {{#if additionalServices}}
+            <div class="price-row">
+                <span>Additional Services:</span>
+                <span>{{additionalServices}}</span>
+            </div>
+            {{/if}}
+            {{#if discount}}
+            <div class="price-row">
+                <span>Discount:</span>
+                <span>-{{discount}}</span>
+            </div>
+            {{/if}}
+            <div class="price-row">
+                <span>Taxes & Fees:</span>
+                <span>{{taxes}}</span>
+            </div>
+            <div class="price-row total-price">
+                <span>Total Amount:</span>
+                <span>{{totalPrice}}</span>
+            </div>
+        </div>
+
+        <div class="important-info">
+            <h4>Important Information</h4>
+            <ul>
+                <li>Please keep this confirmation and bring it with you during travel</li>
+                <li>Verify all information in this confirmation is correct</li>
+                <li>Contact us immediately if you notice any errors</li>
+                <li>Please review the booking terms and cancellation policy</li>
+                <li>Ensure your passport is valid for at least 6 months</li>
+                <li>Obtain required visas if applicable</li>
+            </ul>
+        </div>
+
+        {{#if qrCode}}
+        <div class="qr-code">
+            <h4>Booking QR Code</h4>
+            <img src="{{qrCode}}" alt="Booking QR Code">
+        </div>
+        {{/if}}
+
+        <div class="contact-info">
+            <h4>Contact Information</h4>
+            <p><strong>Phone:</strong> {{supportPhone}}</p>
+            <p><strong>Email:</strong> {{supportEmail}}</p>
+            <p><strong>Business Hours:</strong> {{supportHours}}</p>
+            <p><strong>Emergency:</strong> {{emergencyPhone}}</p>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="{{bookingUrl}}" class="button">View Booking Details</a>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for choosing {{brandName}} - We look forward to serving you</p>
+            <p>This is an automated email, please do not reply</p>
+            <p>© {{currentYear}} {{brandName}}. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

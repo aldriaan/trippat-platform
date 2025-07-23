@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الحجز - {{brandName}}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            direction: rtl;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #007bff;
+            margin: 0;
+            font-size: 28px;
+        }
+        .booking-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .booking-info h2 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .info-value {
+            color: #333;
+        }
+        .package-details {
+            margin-bottom: 20px;
+        }
+        .package-details h3 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .itinerary {
+            margin-bottom: 20px;
+        }
+        .itinerary-day {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-right: 4px solid #007bff;
+        }
+        .itinerary-day h4 {
+            color: #333;
+            margin: 0 0 8px 0;
+        }
+        .itinerary-day p {
+            margin: 0;
+            color: #666;
+        }
+        .price-summary {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .price-summary h3 {
+            color: #28a745;
+            margin-top: 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+            border-top: 2px solid #28a745;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .important-info {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-right: 4px solid #ffc107;
+        }
+        .important-info h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .important-info ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+        .important-info li {
+            margin-bottom: 5px;
+            color: #856404;
+        }
+        .contact-info {
+            background-color: #d4edda;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .contact-info h4 {
+            color: #155724;
+            margin-top: 0;
+        }
+        .contact-info p {
+            margin: 5px 0;
+            color: #155724;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 12px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .qr-code img {
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{brandName}}</h1>
+            <p>تأكيد حجز الرحلة</p>
+        </div>
+
+        <div class="booking-info">
+            <h2>معلومات الحجز</h2>
+            <div class="info-row">
+                <span class="info-label">رقم الحجز:</span>
+                <span class="info-value">{{bookingId}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">تاريخ الحجز:</span>
+                <span class="info-value">{{bookingDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">حالة الحجز:</span>
+                <span class="info-value">{{bookingStatus}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">اسم المسافر:</span>
+                <span class="info-value">{{customerName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">البريد الإلكتروني:</span>
+                <span class="info-value">{{customerEmail}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">رقم الهاتف:</span>
+                <span class="info-value">{{customerPhone}}</span>
+            </div>
+        </div>
+
+        <div class="package-details">
+            <h3>تفاصيل الحزمة</h3>
+            <div class="info-row">
+                <span class="info-label">اسم الحزمة:</span>
+                <span class="info-value">{{packageTitle}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">الوجهة:</span>
+                <span class="info-value">{{destination}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">المدة:</span>
+                <span class="info-value">{{duration}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">تاريخ البداية:</span>
+                <span class="info-value">{{startDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">تاريخ النهاية:</span>
+                <span class="info-value">{{endDate}}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">عدد المسافرين:</span>
+                <span class="info-value">{{travelerCount}}</span>
+            </div>
+        </div>
+
+        {{#if itinerary}}
+        <div class="itinerary">
+            <h3>برنامج الرحلة</h3>
+            {{#each itinerary}}
+            <div class="itinerary-day">
+                <h4>اليوم {{day}}: {{title}}</h4>
+                <p>{{description}}</p>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        <div class="price-summary">
+            <h3>ملخص الأسعار</h3>
+            <div class="price-row">
+                <span>سعر الحزمة ({{travelerCount}} مسافر):</span>
+                <span>{{packagePrice}}</span>
+            </div>
+            {{#if additionalServices}}
+            <div class="price-row">
+                <span>خدمات إضافية:</span>
+                <span>{{additionalServices}}</span>
+            </div>
+            {{/if}}
+            {{#if discount}}
+            <div class="price-row">
+                <span>خصم:</span>
+                <span>-{{discount}}</span>
+            </div>
+            {{/if}}
+            <div class="price-row">
+                <span>الضرائب والرسوم:</span>
+                <span>{{taxes}}</span>
+            </div>
+            <div class="price-row total-price">
+                <span>إجمالي المبلغ:</span>
+                <span>{{totalPrice}}</span>
+            </div>
+        </div>
+
+        <div class="important-info">
+            <h4>معلومات مهمة</h4>
+            <ul>
+                <li>يُرجى الاحتفاظ بهذا التأكيد وإحضاره معك أثناء السفر</li>
+                <li>تأكد من صحة جميع المعلومات الواردة في هذا التأكيد</li>
+                <li>في حالة وجود أي أخطاء، يُرجى الاتصال بنا فوراً</li>
+                <li>يُرجى مراجعة شروط وأحكام الحجز والإلغاء</li>
+                <li>تأكد من صلاحية جواز السفر لمدة لا تقل عن 6 أشهر</li>
+                <li>احرص على الحصول على التأشيرة المطلوبة إن وجدت</li>
+            </ul>
+        </div>
+
+        {{#if qrCode}}
+        <div class="qr-code">
+            <h4>رمز QR للحجز</h4>
+            <img src="{{qrCode}}" alt="QR Code للحجز">
+        </div>
+        {{/if}}
+
+        <div class="contact-info">
+            <h4>معلومات الاتصال</h4>
+            <p><strong>الهاتف:</strong> {{supportPhone}}</p>
+            <p><strong>البريد الإلكتروني:</strong> {{supportEmail}}</p>
+            <p><strong>ساعات العمل:</strong> {{supportHours}}</p>
+            <p><strong>الطوارئ:</strong> {{emergencyPhone}}</p>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="{{bookingUrl}}" class="button">عرض تفاصيل الحجز</a>
+        </div>
+
+        <div class="footer">
+            <p>شكراً لاختيارك {{brandName}} - نتطلع لخدمتك</p>
+            <p>هذا بريد إلكتروني تلقائي، يُرجى عدم الرد عليه</p>
+            <p>© {{currentYear}} {{brandName}}. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</body>
+</html>

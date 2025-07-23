@@ -1,0 +1,231 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "packages": "الحزم السياحية",
+    "dashboard": "لوحة التحكم",
+    "profile": "الملف الشخصي",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "language": "اللغة",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "hero": {
+    "title": "اكتشف مغامرتك القادمة",
+    "subtitle": "استكشف العالم مع حزمنا السياحية المنتقاة بعناية ومساعد السفر الذكي",
+    "cta": "ابدأ التخطيط",
+    "aiAssistant": "اسأل المساعد الذكي"
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول إلى حسابك",
+      "subtitle": "مرحباً بك مرة أخرى! يرجى إدخال بياناتك",
+      "email": "عنوان البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "rememberMe": "تذكرني",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "signIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "createAccount": "أنشئ حساباً",
+      "signingIn": "جاري تسجيل الدخول..."
+    },
+    "register": {
+      "title": "إنشاء حساب جديد",
+      "subtitle": "انضم إلينا وابدأ رحلتك السياحية",
+      "fullName": "الاسم الكامل",
+      "email": "عنوان البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "agreeTerms": "أوافق على الشروط والأحكام وسياسة الخصوصية",
+      "createAccount": "إنشاء حساب",
+      "haveAccount": "لديك حساب بالفعل؟",
+      "signIn": "تسجيل الدخول",
+      "creating": "جاري إنشاء الحساب..."
+    },
+    "forgotPassword": {
+      "title": "إعادة تعيين كلمة المرور",
+      "subtitle": "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور",
+      "email": "عنوان البريد الإلكتروني",
+      "sendLink": "إرسال رابط الإعادة",
+      "backToLogin": "العودة لتسجيل الدخول",
+      "sending": "جاري الإرسال..."
+    }
+  },
+  "dashboard": {
+    "welcome": "مرحباً بك، {name}!",
+    "subtitle": "إدارة حجوزاتك واستكشف وجهات جديدة",
+    "stats": {
+      "totalBookings": "إجمالي الحجوزات",
+      "upcomingTrips": "الرحلات القادمة",
+      "completedTrips": "الرحلات المكتملة"
+    },
+    "recentBookings": "الحجوزات الأخيرة",
+    "viewAll": "عرض الكل",
+    "noBookings": "لا توجد حجوزات بعد",
+    "noBookingsSubtitle": "ابدأ الاستكشاف واحجز رحلتك الأولى!",
+    "browsePackages": "تصفح الحزم السياحية",
+    "quickActions": "الإجراءات السريعة",
+    "accountStatus": "حالة الحساب",
+    "emailVerified": "البريد الإلكتروني مؤكد",
+    "profileComplete": "الملف الشخصي مكتمل",
+    "memberSince": "عضو منذ"
+  },
+  "booking": {
+    "title": "احجز رحلتك",
+    "packageDetails": "تفاصيل الحزمة",
+    "travelers": "المسافرون",
+    "adults": "البالغون",
+    "children": "الأطفال",
+    "infants": "الرضع",
+    "travelDates": "تواريخ السفر",
+    "checkIn": "تاريخ الوصول",
+    "checkOut": "تاريخ المغادرة",
+    "contactInfo": "معلومات الاتصال",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "specialRequests": "طلبات خاصة",
+    "total": "المجموع",
+    "completeBooking": "إتمام الحجز",
+    "processing": "جاري معالجة الحجز...",
+    "confirmation": {
+      "title": "تم تأكيد الحجز!",
+      "subtitle": "تم إنشاء حجزك بنجاح",
+      "reference": "رقم مرجع الحجز",
+      "nextSteps": "ما الخطوات التالية؟",
+      "confirmationEmail": "بريد التأكيد",
+      "travelDocuments": "وثائق السفر",
+      "support": "الدعم"
+    }
+  },
+  "chat": {
+    "title": "مساعد السفر الذكي",
+    "subtitle": "احصل على توصيات سفر مخصصة ودعم شخصي",
+    "placeholder": "اسألني أي شيء عن السفر...",
+    "send": "إرسال",
+    "thinking": "جاري التفكير...",
+    "newConversation": "محادثة جديدة",
+    "suggestions": {
+      "title": "أسئلة شائعة",
+      "items": [
+        "ما هي أفضل الوجهات للعائلات؟",
+        "أعرض لي حزم سفر حلال",
+        "كيف الطقس في دبي؟",
+        "أوجد لي رحلات بميزانية محدودة",
+        "ما هي متطلبات التأشيرة للسعودية؟"
+      ]
+    },
+    "culturalContext": {
+      "halalFood": "طعام حلال متوفر",
+      "prayerTimes": "أوقات الصلاة متضمنة",
+      "familyFriendly": "مناسب للعائلات",
+      "islamicHeritage": "مواقع التراث الإسلامي"
+    }
+  },
+  "packages": {
+    "title": "الحزم السياحية",
+    "subtitle": "اكتشف وجهات مذهلة مع تجاربنا السياحية المنتقاة",
+    "filters": {
+      "category": "الفئة",
+      "priceRange": "نطاق السعر",
+      "duration": "المدة",
+      "destination": "الوجهة"
+    },
+    "bookNow": "احجز الآن",
+    "viewDetails": "عرض التفاصيل",
+    "from": "من",
+    "per": "لكل",
+    "person": "شخص",
+    "days": "أيام",
+    "nights": "ليال"
+  },
+  "profile": {
+    "title": "إعدادات الملف الشخصي",
+    "personalInfo": "المعلومات الشخصية",
+    "security": "الأمان",
+    "notifications": "الإشعارات",
+    "preferences": "التفضيلات",
+    "language": "اللغة",
+    "currency": "العملة",
+    "timezone": "المنطقة الزمنية",
+    "saveChanges": "حفظ التغييرات"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "back": "السابق",
+    "next": "التالي",
+    "previous": "السابق",
+    "close": "إغلاق",
+    "search": "بحث",
+    "filter": "فلتر",
+    "sort": "ترتيب",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "location": "الموقع",
+    "price": "السعر",
+    "duration": "المدة",
+    "status": "الحالة",
+    "currency": {
+      "usd": "دولار أمريكي",
+      "sar": "ريال سعودي"
+    },
+    "dates": {
+      "today": "اليوم",
+      "tomorrow": "غداً",
+      "yesterday": "أمس",
+      "thisWeek": "هذا الأسبوع",
+      "nextWeek": "الأسبوع القادم",
+      "thisMonth": "هذا الشهر",
+      "nextMonth": "الشهر القادم"
+    }
+  },
+  "home": {
+    "features": {
+      "title": "لماذا تختار تريبات؟",
+      "subtitle": "منصة السفر الذكية التي تجمع بين الذكاء الاصطناعي والخبرة الثقافية",
+      "ai": {
+        "title": "مساعد ذكي متعدد اللغات",
+        "description": "احصل على توصيات مخصصة بالعربية والإنجليزية مع فهم عميق للثقافة المحلية"
+      },
+      "cultural": {
+        "title": "سفر يراعي الثقافة الإسلامية",
+        "description": "جميع توصياتنا تراعي الطعام الحلال وأوقات الصلاة والتقاليد الإسلامية"
+      },
+      "expertise": {
+        "title": "خبرة محلية عالمية",
+        "description": "استكشف العالم مع خبراء محليين يفهمون احتياجاتك الثقافية"
+      }
+    },
+    "cta": {
+      "title": "ابدأ رحلتك اليوم",
+      "subtitle": "تحدث مع مساعدنا الذكي واكتشف وجهات مذهلة تناسب ثقافتك وتفضيلاتك"
+    },
+    "badges": {
+      "halal": "حلال",
+      "prayerTimes": "أوقات الصلاة",
+      "familyFriendly": "مناسب للعائلات",
+      "islamicHeritage": "تراث إسلامي"
+    },
+    "viewAllPackages": "عرض جميع الحزم",
+    "brandName": "تريبات",
+    "brandTagline": "السفر بالذكاء الاصطناعي",
+    "companySection": "الشركة",
+    "legalSection": "قانوني",
+    "allRightsReserved": "جميع الحقوق محفوظة"
+  },
+  "footer": {
+    "about": "عن تريبات",
+    "contact": "اتصل بنا",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "support": "مركز الدعم",
+    "followUs": "تابعنا"
+  }
+}

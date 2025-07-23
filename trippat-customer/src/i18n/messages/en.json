@@ -1,0 +1,231 @@
+{
+  "nav": {
+    "home": "Home",
+    "packages": "Packages",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "language": "Language",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "hero": {
+    "title": "Discover Your Next Adventure",
+    "subtitle": "Experience the world with our carefully curated travel packages and AI-powered travel assistant",
+    "cta": "Start Planning",
+    "aiAssistant": "Ask AI Assistant"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in to your account",
+      "subtitle": "Welcome back! Please enter your credentials",
+      "email": "Email address",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot your password?",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create one",
+      "signingIn": "Signing in..."
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Join us and start your travel journey",
+      "fullName": "Full Name",
+      "email": "Email address",
+      "phone": "Phone Number",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "agreeTerms": "I agree to the Terms and Conditions and Privacy Policy",
+      "createAccount": "Create Account",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "creating": "Creating account..."
+    },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email address and we'll send you a link to reset your password",
+      "email": "Email address",
+      "sendLink": "Send Reset Link",
+      "backToLogin": "Back to Login",
+      "sending": "Sending..."
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}!",
+    "subtitle": "Manage your bookings and explore new destinations",
+    "stats": {
+      "totalBookings": "Total Bookings",
+      "upcomingTrips": "Upcoming Trips",
+      "completedTrips": "Completed Trips"
+    },
+    "recentBookings": "Recent Bookings",
+    "viewAll": "View all",
+    "noBookings": "No bookings yet",
+    "noBookingsSubtitle": "Start exploring and book your first trip!",
+    "browsePackages": "Browse Packages",
+    "quickActions": "Quick Actions",
+    "accountStatus": "Account Status",
+    "emailVerified": "Email Verified",
+    "profileComplete": "Profile Complete",
+    "memberSince": "Member Since"
+  },
+  "booking": {
+    "title": "Book Your Trip",
+    "packageDetails": "Package Details",
+    "travelers": "Travelers",
+    "adults": "Adults",
+    "children": "Children",
+    "infants": "Infants",
+    "travelDates": "Travel Dates",
+    "checkIn": "Check-in Date",
+    "checkOut": "Check-out Date",
+    "contactInfo": "Contact Information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "specialRequests": "Special Requests",
+    "total": "Total",
+    "completeBooking": "Complete Booking",
+    "processing": "Processing Booking...",
+    "confirmation": {
+      "title": "Booking Confirmed!",
+      "subtitle": "Your booking has been successfully created",
+      "reference": "Booking Reference",
+      "nextSteps": "What's Next?",
+      "confirmationEmail": "Confirmation Email",
+      "travelDocuments": "Travel Documents",
+      "support": "Support"
+    }
+  },
+  "chat": {
+    "title": "AI Travel Assistant",
+    "subtitle": "Get personalized travel recommendations and support",
+    "placeholder": "Ask me anything about travel...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "newConversation": "New Conversation",
+    "suggestions": {
+      "title": "Popular Questions",
+      "items": [
+        "What are the best destinations for families?",
+        "Show me halal-friendly travel packages",
+        "What's the weather like in Dubai?",
+        "Find me budget-friendly trips",
+        "What are the visa requirements for Saudi Arabia?"
+      ]
+    },
+    "culturalContext": {
+      "halalFood": "Halal Food Available",
+      "prayerTimes": "Prayer Times Included",
+      "familyFriendly": "Family-Friendly",
+      "islamicHeritage": "Islamic Heritage Sites"
+    }
+  },
+  "packages": {
+    "title": "Travel Packages",
+    "subtitle": "Discover amazing destinations with our curated travel experiences",
+    "filters": {
+      "category": "Category",
+      "priceRange": "Price Range",
+      "duration": "Duration",
+      "destination": "Destination"
+    },
+    "bookNow": "Book Now",
+    "viewDetails": "View Details",
+    "from": "From",
+    "per": "per",
+    "person": "person",
+    "days": "days",
+    "nights": "nights"
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "personalInfo": "Personal Information",
+    "security": "Security",
+    "notifications": "Notifications",
+    "preferences": "Preferences",
+    "language": "Language",
+    "currency": "Currency",
+    "timezone": "Timezone",
+    "saveChanges": "Save Changes"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "date": "Date",
+    "time": "Time",
+    "location": "Location",
+    "price": "Price",
+    "duration": "Duration",
+    "status": "Status",
+    "currency": {
+      "usd": "USD",
+      "sar": "SAR"
+    },
+    "dates": {
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "yesterday": "Yesterday",
+      "thisWeek": "This Week",
+      "nextWeek": "Next Week",
+      "thisMonth": "This Month",
+      "nextMonth": "Next Month"
+    }
+  },
+  "home": {
+    "features": {
+      "title": "Why Choose Trippat?",
+      "subtitle": "AI-powered travel platform that combines artificial intelligence with cultural expertise",
+      "ai": {
+        "title": "AI-Powered Multilingual Assistant",
+        "description": "Get personalized recommendations in Arabic and English with deep cultural understanding"
+      },
+      "cultural": {
+        "title": "Culturally Conscious Travel",
+        "description": "All our recommendations consider halal food, prayer times, and Islamic traditions"
+      },
+      "expertise": {
+        "title": "Global Local Expertise",
+        "description": "Explore the world with local experts who understand your cultural needs"
+      }
+    },
+    "cta": {
+      "title": "Start Your Journey Today",
+      "subtitle": "Chat with our AI assistant and discover amazing destinations that match your culture and preferences"
+    },
+    "badges": {
+      "halal": "Halal",
+      "prayerTimes": "Prayer Times",
+      "familyFriendly": "Family-Friendly",
+      "islamicHeritage": "Islamic Heritage"
+    },
+    "viewAllPackages": "View All Packages",
+    "brandName": "Trippat",
+    "brandTagline": "AI-Powered Travel",
+    "companySection": "Company",
+    "legalSection": "Legal",
+    "allRightsReserved": "All rights reserved"
+  },
+  "footer": {
+    "about": "About Trippat",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "support": "Support Center",
+    "followUs": "Follow Us"
+  }
+}

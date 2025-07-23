@@ -1,0 +1,284 @@
+### API Test Calls for Trippat Backend
+### Base URL: http://localhost:5001/api
+
+### Variables (update token after login)
+@baseUrl = http://localhost:5001/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzU1NDBmMzBjZjY2YTljNGY4M2VhOSIsImVtYWlsIjoiYWRtaW5AdHJpcHBhdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTI5MzQzNzUsImV4cCI6MTc1MzAyMDc3NX0.7JGqs7LkaRKbs04k0qorfd0IB3KuQklY126bnBJAsXc
+
+################################################################################
+# 1. AUTH ENDPOINTS
+################################################################################
+
+### 1.1 Register New User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test3@example.com",
+  "password": "Test123!",
+  "confirmPassword": "Test123!"
+}
+
+### 1.2 Login (Admin)
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@trippat.com",
+  "password": "admin123"
+}
+
+### 1.3 Login (Customer)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test3@example.com",
+  "password": "Test123!"
+}
+
+### 1.4 Get Current User Profile
+GET {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
+
+### 1.5 Update Profile
+PUT {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Updated Name",
+  "language": "ar",
+  "currency": "SAR"
+}
+
+################################################################################
+# 2. PACKAGE ENDPOINTS
+################################################################################
+
+### 2.1 Get All Packages
+GET {{baseUrl}}/packages
+Content-Type: application/json
+
+### 2.2 Get All Packages with Language/Currency
+GET {{baseUrl}}/packages?language=ar&currency=SAR
+Content-Type: application/json
+
+### 2.3 Search Packages
+GET {{baseUrl}}/packages/search?q=dubai&minPrice=100&maxPrice=1000
+Content-Type: application/json
+
+### 2.4 Get Single Package
+GET {{baseUrl}}/packages/687554be30cf66a9c4f83eae
+Content-Type: application/json
+
+### 2.5 Create New Package (Admin/Expert Only)
+# @name createPackage
+POST {{baseUrl}}/packages
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Amazing Riyadh Heritage Tour",
+  "title_ar": ",HD) *1'+J) 1'&9) AJ 'D1J'6",
+  "description": "Explore the rich heritage and culture of Saudi Arabia's capital city",
+  "description_ar": "'C*4A 'D*1'+ 'D:FJ H'D+B'A) D9'5E) 'DEEDC) 'D91(J) 'D39H/J)",
+  "destination": "Riyadh, Saudi Arabia",
+  "destination_ar": "'D1J'6 'DEEDC) 'D91(J) 'D39H/J)",
+  "duration": 3,
+  "priceAdult": 1500,
+  "priceChild": 750,
+  "priceInfant": 0,
+  "category": "cultural",
+  "tags": ["heritage", "culture", "history", "saudi"],
+  "inclusions": [
+    "Professional tour guide",
+    "Hotel pickup and drop-off",
+    "Entrance fees to all attractions",
+    "Traditional Saudi lunch"
+  ],
+  "inclusions_ar": [
+    "E14/ 3J'-J E-*1A",
+    "'DFBD EF H%DI 'DAF/B",
+    "13HE 'D/.HD D,EJ9 'DE9'DE",
+    ":/'! 39H/J *BDJ/J"
+  ],
+  "exclusions": [
+    "Personal expenses",
+    "Tips and gratuities"
+  ],
+  "exclusions_ar": [
+    "'DE5'1JA 'D4.5J)",
+    "'D(B4J4 H'D%C1'EJ'*"
+  ],
+  "itinerary": "Day 1: Historical Diriyah\nDay 2: National Museum & Murabba Palace\nDay 3: Traditional Souks & Kingdom Tower",
+  "itinerary_ar": "'DJHE 1: 'D/19J) 'D*'1J.J)\n'DJHE 2: 'DE*-A 'DH7FJ HB51 'DE1(9\n'DJHE 3: 'D#3H'B 'D*BDJ/J) H(1, 'DEEDC)",
+  "tourType": "Group",
+  "difficultyLevel": "Easy",
+  "allowChildren": true,
+  "allowInfants": true,
+  "minimumPeople": 2,
+  "maximumPeople": 15,
+  "featured": true,
+  "availability": true
+}
+
+### 2.6 Update Package (Admin/Expert Only)
+PUT {{baseUrl}}/packages/687554be30cf66a9c4f83eae
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Updated Santorini Experience",
+  "description": "An even more amazing experience in the Greek islands",
+  "price": 1200,
+  "priceAdult": 1200,
+  "priceChild": 600,
+  "duration": 6,
+  "availability": true,
+  "tags": ["luxury", "romance", "greece", "updated"]
+}
+
+### 2.7 Delete Package (Admin Only)
+DELETE {{baseUrl}}/packages/PACKAGE_ID_HERE
+Authorization: Bearer {{token}}
+
+### 2.8 Toggle Package Availability
+PATCH {{baseUrl}}/packages/687554be30cf66a9c4f83eae/availability
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "availability": false
+}
+
+################################################################################
+# 3. BOOKING ENDPOINTS
+################################################################################
+
+### 3.1 Create Booking
+POST {{baseUrl}}/bookings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "packageId": "687554be30cf66a9c4f83eae",
+  "startDate": "2025-08-15",
+  "endDate": "2025-08-20",
+  "numberOfAdults": 2,
+  "numberOfChildren": 1,
+  "numberOfInfants": 0,
+  "contactDetails": {
+    "fullName": "John Doe",
+    "email": "john@example.com",
+    "phone": "+966501234567"
+  },
+  "specialRequests": "Vegetarian meals preferred"
+}
+
+### 3.2 Get My Bookings
+GET {{baseUrl}}/bookings/my-bookings
+Authorization: Bearer {{token}}
+
+### 3.3 Get All Bookings (Admin Only)
+GET {{baseUrl}}/bookings
+Authorization: Bearer {{token}}
+
+### 3.4 Get Single Booking
+GET {{baseUrl}}/bookings/BOOKING_ID_HERE
+Authorization: Bearer {{token}}
+
+### 3.5 Update Booking Status (Admin Only)
+PUT {{baseUrl}}/bookings/BOOKING_ID_HERE/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "confirmed"
+}
+
+### 3.6 Cancel Booking
+DELETE {{baseUrl}}/bookings/BOOKING_ID_HERE
+Authorization: Bearer {{token}}
+
+################################################################################
+# 4. ADMIN ENDPOINTS
+################################################################################
+
+### 4.1 Get Dashboard Stats
+GET {{baseUrl}}/admin/dashboard/stats
+Authorization: Bearer {{token}}
+
+### 4.2 Get All Users (Admin Only)
+GET {{baseUrl}}/admin/users
+Authorization: Bearer {{token}}
+
+### 4.3 Update User Role (Admin Only)
+PUT {{baseUrl}}/admin/users/USER_ID_HERE/role
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "role": "expert"
+}
+
+### 4.4 Get Analytics
+GET {{baseUrl}}/admin/analytics/packages
+Authorization: Bearer {{token}}
+
+### 4.5 Export Data (Admin Only)
+GET {{baseUrl}}/admin/export/bookings?format=csv&startDate=2025-01-01&endDate=2025-12-31
+Authorization: Bearer {{token}}
+
+################################################################################
+# 5. CATEGORY ENDPOINTS
+################################################################################
+
+### 5.1 Get All Categories
+GET {{baseUrl}}/categories
+
+### 5.2 Create Category (Admin Only)
+POST {{baseUrl}}/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Wellness",
+  "name_ar": "'D9'AJ)",
+  "description": "Health and wellness focused tours",
+  "description_ar": ",HD'* *1C2 9DI 'D5-) H'D9'AJ)",
+  "icon": "spa",
+  "order": 5
+}
+
+################################################################################
+# 6. FILE UPLOAD ENDPOINTS
+################################################################################
+
+### 6.1 Upload Package Image
+POST {{baseUrl}}/upload/package-image
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="packageId"
+
+687554be30cf66a9c4f83eae
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="tour-image.jpg"
+Content-Type: image/jpeg
+
+< ./sample-image.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+################################################################################
+# NOTES:
+################################################################################
+# 1. Replace {{token}} with actual token after login
+# 2. Replace PACKAGE_ID_HERE, BOOKING_ID_HERE, USER_ID_HERE with actual IDs
+# 3. For file upload, ensure you have a sample-image.jpg in the same directory
+# 4. Some endpoints require admin role (admin@trippat.com / admin123)
+# 5. VS Code REST Client extension recommended for running these tests
+# 6. After login, copy the token from response and update @token variable
