@@ -93,6 +93,8 @@ SSH_KEY="~/.ssh/your-key.pem"
 
 ### Backend Environment (.env.production)
 
+**Note**: A sample `.env.production.local` file is included that contains the exact configuration used on AWS. Copy this to `.env.production` on your server.
+
 ```env
 MONGODB_URI=mongodb://localhost:27017/trippat_production
 JWT_SECRET=your-super-secure-jwt-secret
