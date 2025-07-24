@@ -280,11 +280,11 @@ const AdminDashboard: React.FC = () => {
                   <div className="flex items-center space-x-3">
                     <div className="h-8 w-8 bg-gray-300 rounded-full flex items-center justify-center">
                       <span className="text-gray-600 font-medium text-sm">
-                        {user.name.split(' ').map(n => n[0]).join('')}
+                        {user.name ? user.name.split(' ').map(n => n[0]).join('') : user.email?.[0]?.toUpperCase() || 'U'}
                       </span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">{user.name}</p>
+                      <p className="font-medium text-gray-900">{user.name || user.email}</p>
                       <p className="text-sm text-gray-500">{user.email}</p>
                     </div>
                   </div>
