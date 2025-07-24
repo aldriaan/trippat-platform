@@ -9,17 +9,17 @@ module.exports = {
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'production',
-        PORT: 5000
+        PORT: 5001
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 5000
+        PORT: 5001
       }
     },
     {
       name: 'trippat-admin',
-      script: 'node_modules/next/dist/bin/next',
-      args: 'start',
+      script: 'npm',
+      args: 'run dev',
       cwd: './trippat-admin',
       instances: 1,
       autorestart: true,
@@ -27,17 +27,21 @@ module.exports = {
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'production',
-        PORT: 3001
+        PORT: 3001,
+        NEXT_PUBLIC_API_URL: 'http://3.72.21.168:5001/api',
+        NEXT_PUBLIC_API_BASE_URL: 'http://3.72.21.168:5001'
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 3001
+        PORT: 3001,
+        NEXT_PUBLIC_API_URL: 'http://3.72.21.168:5001/api',
+        NEXT_PUBLIC_API_BASE_URL: 'http://3.72.21.168:5001'
       }
     },
     {
       name: 'trippat-customer',
-      script: 'node_modules/next/dist/bin/next',
-      args: 'start',
+      script: 'npm',
+      args: 'run dev',
       cwd: './trippat-customer',
       instances: 1,
       autorestart: true,
@@ -45,11 +49,15 @@ module.exports = {
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'production',
-        PORT: 3000
+        PORT: 3000,
+        NEXT_PUBLIC_API_URL: 'http://3.72.21.168:5001/api',
+        NEXT_PUBLIC_API_BASE_URL: 'http://3.72.21.168:5001'
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 3000
+        PORT: 3000,
+        NEXT_PUBLIC_API_URL: 'http://3.72.21.168:5001/api',
+        NEXT_PUBLIC_API_BASE_URL: 'http://3.72.21.168:5001'
       }
     }
   ]
