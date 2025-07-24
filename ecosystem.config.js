@@ -13,13 +13,17 @@ module.exports = {
         NODE_ENV: 'production',
         PORT: 5001,
         MONGODB_URI: 'mongodb+srv://aaldriaan:BubuT8gTHoSpep1f@trippatdb.q9rjvzi.mongodb.net/trippat?retryWrites=true&w=majority&appName=trippatDB',
-        JWT_SECRET: 'trippat-super-secure-jwt-secret-production-2024'
+        JWT_SECRET: 'trippat-super-secure-jwt-secret-production-2024',
+        FRONTEND_URL: 'http://3.72.21.168:3000',
+        ADMIN_URL: 'http://3.72.21.168:3001'
       },
       env_production: {
         NODE_ENV: 'production',
         PORT: 5001,
         MONGODB_URI: 'mongodb+srv://aaldriaan:BubuT8gTHoSpep1f@trippatdb.q9rjvzi.mongodb.net/trippat?retryWrites=true&w=majority&appName=trippatDB',
-        JWT_SECRET: 'trippat-super-secure-jwt-secret-production-2024'
+        JWT_SECRET: 'trippat-super-secure-jwt-secret-production-2024',
+        FRONTEND_URL: 'http://3.72.21.168:3000',
+        ADMIN_URL: 'http://3.72.21.168:3001'
       }
     },
     {
