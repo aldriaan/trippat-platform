@@ -40,7 +40,7 @@ app.use(helmet({
 // CORS middleware - Must be before routes
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yourdomain.com'] 
+    ? [process.env.FRONTEND_URL, process.env.ADMIN_URL].filter(Boolean)
     : true, // Allow all origins in development
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
