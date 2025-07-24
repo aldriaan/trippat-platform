@@ -11,11 +11,13 @@ module.exports = {
       env_file: '.env.production',
       env: {
         NODE_ENV: 'production',
-        PORT: 5001
+        PORT: 5001,
+        MONGODB_URI: 'mongodb+srv://aaldriaan:BubuT8gTHoSpep1f@trippatdb.q9rjvzi.mongodb.net/trippat?retryWrites=true&w=majority&appName=trippatDB'
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 5001
+        PORT: 5001,
+        MONGODB_URI: 'mongodb+srv://aaldriaan:BubuT8gTHoSpep1f@trippatdb.q9rjvzi.mongodb.net/trippat?retryWrites=true&w=majority&appName=trippatDB'
       }
     },
     {
