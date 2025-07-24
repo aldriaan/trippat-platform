@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import Layout from '@/components/Layout'
 import { CheckCircle, Loader } from 'lucide-react'
 
-export default function TamaraSuccessPage() {
+function TamaraSuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const locale = useLocale()
@@ -150,5 +150,13 @@ export default function TamaraSuccessPage() {
         </div>
       </div>
     </Layout>
+  )
+}
+
+export default function TamaraSuccessPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TamaraSuccessContent />
+    </Suspense>
   )
 }

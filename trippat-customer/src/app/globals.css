@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Trippat Brand Colors & Variables */
 :root {
@@ -304,15 +306,16 @@ html {
   --tw-ring-color: var(--trippat-secondary-2);
 }
 
-/* Tailwind v4 color utilities */
+/* Custom color utilities */
 @layer utilities {
-  .bg-primary { background-color: var(--color-primary); }
-  .bg-secondary { background-color: var(--color-secondary); }
-  .bg-accent { background-color: var(--color-accent); }
-  .text-primary { color: var(--color-primary); }
-  .text-secondary { color: var(--color-secondary); }
-  .text-accent { color: var(--color-accent); }
-  .border-primary { border-color: var(--color-primary); }
-  .border-secondary { border-color: var(--color-secondary); }
-  .border-accent { border-color: var(--color-accent); }
+  .bg-trippat-primary-1 { background-color: var(--trippat-primary-1); }
+  .bg-trippat-primary-2 { background-color: var(--trippat-primary-2); }
+  .bg-trippat-secondary-1 { background-color: var(--trippat-secondary-1); }
+  .bg-trippat-secondary-2 { background-color: var(--trippat-secondary-2); }
+  .text-trippat-primary-1 { color: var(--trippat-primary-1); }
+  .text-trippat-primary-2 { color: var(--trippat-primary-2); }
+  .text-trippat-secondary-1 { color: var(--trippat-secondary-1); }
+  .text-trippat-secondary-2 { color: var(--trippat-secondary-2); }
+  .border-trippat-primary-1 { border-color: var(--trippat-primary-1); }
+  .border-trippat-secondary-2 { border-color: var(--trippat-secondary-2); }
 }

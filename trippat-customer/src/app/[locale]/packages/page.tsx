@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import PackagesPage from '@/components/PackagesPage'
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 }
 
 export default function Packages() {
-  return <PackagesPage />
+  return (
+    <Suspense fallback={<div>Loading packages...</div>}>
+      <PackagesPage />
+    </Suspense>
+  )
 }

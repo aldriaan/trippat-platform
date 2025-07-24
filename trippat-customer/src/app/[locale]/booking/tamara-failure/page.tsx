@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import Layout from '@/components/Layout'
 import { XCircle, ArrowLeft } from 'lucide-react'
 
-export default function TamaraFailurePage() {
+function TamaraFailureContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const locale = useLocale()
@@ -79,5 +79,13 @@ export default function TamaraFailurePage() {
         </div>
       </div>
     </Layout>
+  )
+}
+
+export default function TamaraFailurePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TamaraFailureContent />
+    </Suspense>
   )
 }
