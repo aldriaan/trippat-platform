@@ -8,7 +8,7 @@ set -e  # Exit on error
 # Configuration
 EC2_HOST="3.72.21.168"
 EC2_USER="ubuntu"
-SSH_KEY="~/.ssh/trippat-key.pem"
+SSH_KEY="$HOME/.ssh/trippat-key.pem"
 PROJECT_PATH="/var/www/trippat"
 
 # Colors for output
