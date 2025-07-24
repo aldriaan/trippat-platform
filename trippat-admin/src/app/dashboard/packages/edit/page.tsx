@@ -289,7 +289,7 @@ const EditTourPage: React.FC = () => {
         setLoadingCategories(true);
         const token = Cookies.get('admin_token');
         
-        const response = await fetch('http://localhost:5001/api/categories', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5001'}/api/categories`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -302,6 +302,11 @@ const EditTourPage: React.FC = () => {
           setCategories(data.data || []);
         } else {
           console.error('Failed to fetch categories:', data.message);
+          if (response.status === 401) {
+            // Token expired or invalid, redirect to login
+            Cookies.remove('admin_token');
+            window.location.href = '/login';
+          }
         }
       } catch (err) {
         console.error('Error fetching categories:', err);
@@ -315,7 +320,7 @@ const EditTourPage: React.FC = () => {
         setLoadingCities(true);
         const token = Cookies.get('admin_token');
         
-        const response = await fetch('http://localhost:5001/api/destinations/cities', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5001'}/api/destinations/cities`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -328,6 +333,11 @@ const EditTourPage: React.FC = () => {
           setCities(data.data.cities || []);
         } else {
           console.error('Failed to fetch cities:', data.message);
+          if (response.status === 401) {
+            // Token expired or invalid, redirect to login
+            Cookies.remove('admin_token');
+            window.location.href = '/login';
+          }
         }
       } catch (err) {
         console.error('Error fetching cities:', err);
