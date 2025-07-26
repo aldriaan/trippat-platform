@@ -17,12 +17,14 @@ const sendResponse = (res, statusCode, success, message, data = null) => {
 
 // Utility function to download images from URLs and save them locally
 const downloadAndSaveImages = async (imageUrls, hotelName) => {
+  console.log('downloadAndSaveImages called with:', imageUrls.length, 'URLs for hotel:', hotelName);
   const processedImages = [];
   const uploadDir = path.join(__dirname, '../../uploads/hotels');
   
   // Ensure upload directory exists
   try {
     await fs.mkdir(uploadDir, { recursive: true });
+    console.log('Upload directory ensured:', uploadDir);
   } catch (error) {
     console.error('Error creating upload directory:', error);
   }
@@ -31,7 +33,12 @@ const downloadAndSaveImages = async (imageUrls, hotelName) => {
     const imageData = imageUrls[i];
     const imageUrl = typeof imageData === 'string' ? imageData : imageData.url;
     
-    if (!imageUrl) continue;
+    console.log(`Processing image ${i + 1}/${imageUrls.length}:`, imageUrl);
+    
+    if (!imageUrl) {
+      console.log('Skipping empty image URL');
+      continue;
+    }
 
     try {
       // Generate unique filename
@@ -41,17 +48,24 @@ const downloadAndSaveImages = async (imageUrls, hotelName) => {
       const filename = `hotel-${hotelName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${timestamp}-${randomSuffix}${extension}`;
       const filepath = path.join(uploadDir, filename);
 
+      console.log('Downloading to:', filepath);
+      
       // Download image
       await downloadImage(imageUrl, filepath);
 
+      console.log('Image downloaded successfully:', filename);
+
       // Add to processed images
-      processedImages.push({
+      const processedImage = {
         url: `/uploads/hotels/${filename}`,
         caption: imageData.caption || `${hotelName} - Image ${i + 1}`,
         caption_ar: imageData.caption_ar || `${hotelName} - صورة ${i + 1}`,
         type: imageData.type || 'other',
         isPrimary: i === 0 || imageData.isPrimary === true
-      });
+      };
+      
+      processedImages.push(processedImage);
+      console.log('Added to processedImages:', processedImage);
 
     } catch (error) {
       console.error(`Error downloading image ${imageUrl}:`, error.message);
@@ -59,6 +73,7 @@ const downloadAndSaveImages = async (imageUrls, hotelName) => {
     }
   }
 
+  console.log('downloadAndSaveImages returning:', processedImages.length, 'processed images');
   return processedImages;
 };
 
@@ -334,7 +349,14 @@ const createHotelJSON = async (req, res) => {
     // Download and save images from URLs
     let processedImages = [];
     if (images && images.length > 0) {
-      processedImages = await downloadAndSaveImages(images, name);
+      console.log('Starting image download for', images.length, 'images');
+      try {
+        processedImages = await downloadAndSaveImages(images, name);
+        console.log('Image download completed. Processed:', processedImages.length, 'images');
+      } catch (error) {
+        console.error('Image download failed:', error);
+        processedImages = []; // Continue hotel creation without images
+      }
     }
 
     const hotelData = {
