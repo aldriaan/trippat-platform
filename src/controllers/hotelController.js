@@ -360,7 +360,19 @@ const createHotelJSON = async (req, res) => {
         paymentPolicy: 'pay_at_hotel',
         minimumAge: 18
       },
-      roomTypes: roomTypes || [],
+      roomTypes: roomTypes && roomTypes.length > 0 ? roomTypes : [{
+        name: "Standard Room",
+        name_ar: "غرفة عادية",
+        description: "Comfortable standard room with modern amenities",
+        description_ar: "غرفة عادية مريحة مع وسائل الراحة الحديثة",
+        capacity: 2,
+        bedType: "double",
+        pricePerNight: parseFloat(basePrice) || 300,
+        currency: currency || 'SAR',
+        totalRooms: parseInt(totalRooms) || 50,
+        amenities: ["air_conditioning", "tv", "wifi"],
+        amenities_ar: ["تكييف", "تلفزيون", "واي فاي"]
+      }],
       images: processedImages,
       seoTitle: seoTitle ? seoTitle.trim() : null,
       seoTitle_ar: seoTitle_ar ? seoTitle_ar.trim() : null,
