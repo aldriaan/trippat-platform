@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/shared/AdminLayout';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { getApiUrl } from '@/lib/api';
 import { 
   Plus, 
   Edit2, 
@@ -119,7 +120,7 @@ export default function DestinationsPage() {
         params.append('search', searchTerm.trim());
       }
       
-      const response = await fetch(`http://localhost:5001/api/destinations?${params}`, {
+      const response = await fetch(`${getApiUrl()}/destinations?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -150,7 +151,7 @@ export default function DestinationsPage() {
     
     try {
       const token = Cookies.get('admin_token');
-      const response = await fetch(`http://localhost:5001/api/destinations/${selectedDestination._id}`, {
+      const response = await fetch(`${getApiUrl()}/destinations/${selectedDestination._id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

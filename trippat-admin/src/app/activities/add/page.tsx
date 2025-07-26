@@ -194,7 +194,7 @@ export default function AddActivityPage() {
       setFormData(prev => ({
         ...prev,
         [parent]: {
-          ...prev[parent as keyof typeof prev],
+          ...(prev[parent as keyof typeof prev] as object || {}),
           [child]: value
         }
       }));
@@ -206,7 +206,7 @@ export default function AddActivityPage() {
   const handleArrayChange = (field: string, index: number, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field as keyof typeof prev].map((item: string, i: number) => 
+      [field]: (prev[field as keyof typeof prev] as string[] || []).map((item: string, i: number) => 
         i === index ? value : item
       )
     }));
@@ -215,14 +215,14 @@ export default function AddActivityPage() {
   const addArrayItem = (field: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: [...prev[field as keyof typeof prev], '']
+      [field]: [...(prev[field as keyof typeof prev] as string[] || []), '']
     }));
   };
 
   const removeArrayItem = (field: string, index: number) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field as keyof typeof prev].filter((_: any, i: number) => i !== index)
+      [field]: (prev[field as keyof typeof prev] as string[] || []).filter((_: any, i: number) => i !== index)
     }));
   };
 
