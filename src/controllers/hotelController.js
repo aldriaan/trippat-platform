@@ -4,12 +4,98 @@ const User = require('../models/User');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs').promises;
+const https = require('https');
+const http = require('http');
 
 const sendResponse = (res, statusCode, success, message, data = null) => {
   return res.status(statusCode).json({
     success,
     message,
     data
+  });
+};
+
+// Utility function to download images from URLs and save them locally
+const downloadAndSaveImages = async (imageUrls, hotelName) => {
+  const processedImages = [];
+  const uploadDir = path.join(__dirname, '../../uploads/hotels');
+  
+  // Ensure upload directory exists
+  try {
+    await fs.mkdir(uploadDir, { recursive: true });
+  } catch (error) {
+    console.error('Error creating upload directory:', error);
+  }
+
+  for (let i = 0; i < imageUrls.length; i++) {
+    const imageData = imageUrls[i];
+    const imageUrl = typeof imageData === 'string' ? imageData : imageData.url;
+    
+    if (!imageUrl) continue;
+
+    try {
+      // Generate unique filename
+      const timestamp = Date.now();
+      const randomSuffix = Math.round(Math.random() * 1E9);
+      const extension = path.extname(new URL(imageUrl).pathname) || '.jpg';
+      const filename = `hotel-${hotelName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${timestamp}-${randomSuffix}${extension}`;
+      const filepath = path.join(uploadDir, filename);
+
+      // Download image
+      await downloadImage(imageUrl, filepath);
+
+      // Add to processed images
+      processedImages.push({
+        url: `/uploads/hotels/${filename}`,
+        caption: imageData.caption || `${hotelName} - Image ${i + 1}`,
+        caption_ar: imageData.caption_ar || `${hotelName} - صورة ${i + 1}`,
+        type: imageData.type || 'other',
+        isPrimary: i === 0 || imageData.isPrimary === true
+      });
+
+    } catch (error) {
+      console.error(`Error downloading image ${imageUrl}:`, error.message);
+      // Continue with next image if one fails
+    }
+  }
+
+  return processedImages;
+};
+
+// Helper function to download image from URL
+const downloadImage = (url, filepath) => {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith('https') ? https : http;
+    
+    const request = client.get(url, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download image: ${response.statusCode}`));
+        return;
+      }
+
+      const fileStream = require('fs').createWriteStream(filepath);
+      response.pipe(fileStream);
+
+      fileStream.on('finish', () => {
+        fileStream.close();
+        resolve();
+      });
+
+      fileStream.on('error', (error) => {
+        require('fs').unlink(filepath, () => {}); // Delete partial file
+        reject(error);
+      });
+    });
+
+    request.on('error', (error) => {
+      reject(error);
+    });
+
+    // Set timeout for download
+    request.setTimeout(30000, () => {
+      request.destroy();
+      reject(new Error('Download timeout'));
+    });
   });
 };
 
@@ -64,7 +150,7 @@ const checkAuthorization = (user, hotelData, action) => {
 };
 
 const storage = multer.diskStorage({
-  destination: async (req, file, cb) => {
+  destination: async (_req, _file, cb) => {
     const uploadDir = path.join(__dirname, '../../uploads/hotels');
     try {
       await fs.mkdir(uploadDir, { recursive: true });
@@ -73,7 +159,7 @@ const storage = multer.diskStorage({
     }
     cb(null, uploadDir);
   },
-  filename: (req, file, cb) => {
+  filename: (_req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, `hotel-${uniqueSuffix}${path.extname(file.originalname)}`);
   }
@@ -85,7 +171,7 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024,
     files: 15
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|gif|webp/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
@@ -212,6 +298,99 @@ const createHotel = async (req, res) => {
 
   } catch (error) {
     console.error('Create hotel error:', error);
+    return sendResponse(res, 500, false, 'Internal server error');
+  }
+};
+
+// NEW: Create hotel with JSON (for n8n automation)
+const createHotelJSON = async (req, res) => {
+  try {
+    const authError = checkAuthorization(req.user, null, 'create');
+    if (authError) {
+      return sendResponse(res, 403, false, authError);
+    }
+
+    const validationError = validateHotelData(req.body);
+    if (validationError) {
+      return sendResponse(res, 400, false, validationError);
+    }
+
+    const {
+      name, name_ar, description, description_ar, starRating, hotelClass,
+      basePrice, currency, totalRooms, seoTitle, seoTitle_ar, seoDescription, 
+      seoDescription_ar, location, amenities, amenities_ar, services, contact,
+      policies, roomTypes, images, tags
+    } = req.body;
+
+    // Download and save images from URLs
+    let processedImages = [];
+    if (images && images.length > 0) {
+      processedImages = await downloadAndSaveImages(images, name);
+    }
+
+    const hotelData = {
+      name: name.trim(),
+      name_ar: name_ar ? name_ar.trim() : null,
+      description: description.trim(),
+      description_ar: description_ar ? description_ar.trim() : null,
+      location: {
+        address: location.address.trim(),
+        address_ar: location.address_ar ? location.address_ar.trim() : null,
+        city: location.city.trim(),
+        city_ar: location.city_ar ? location.city_ar.trim() : null,
+        country: location.country || 'Saudi Arabia',
+        country_ar: location.country_ar || 'المملكة العربية السعودية',
+        coordinates: location.coordinates || {},
+        googlePlaceId: location.googlePlaceId || null
+      },
+      starRating: parseInt(starRating),
+      hotelClass: hotelClass || 'mid_range',
+      basePrice: parseFloat(basePrice),
+      currency: currency || 'SAR',
+      totalRooms: parseInt(totalRooms),
+      amenities: amenities || [],
+      amenities_ar: amenities_ar || [],
+      services: services || {},
+      contact: contact || {},
+      policies: policies || {
+        checkInTime: '15:00',
+        checkOutTime: '12:00',
+        cancellationPolicy: 'moderate',
+        cancellationDeadline: 24,
+        paymentPolicy: 'pay_at_hotel',
+        minimumAge: 18
+      },
+      roomTypes: roomTypes || [],
+      images: processedImages,
+      seoTitle: seoTitle ? seoTitle.trim() : null,
+      seoTitle_ar: seoTitle_ar ? seoTitle_ar.trim() : null,
+      seoDescription: seoDescription ? seoDescription.trim() : null,
+      seoDescription_ar: seoDescription_ar ? seoDescription_ar.trim() : null,
+      tags: tags || [],
+      createdBy: req.user._id,
+      status: 'active',
+      isActive: true
+    };
+
+    const newHotel = new Hotel(hotelData);
+    await newHotel.save();
+
+    const populatedHotel = await Hotel.findById(newHotel._id)
+      .populate('createdBy', 'name email role')
+      .exec();
+
+    return sendResponse(res, 201, true, 'Hotel created successfully', {
+      hotel: populatedHotel,
+      imagesProcessed: processedImages.length,
+      downloadedImages: processedImages.map(img => img.url)
+    });
+
+  } catch (error) {
+    console.error('Create hotel JSON error:', error);
+    if (error.name === 'ValidationError') {
+      const validationErrors = Object.values(error.errors).map(err => err.message);
+      return sendResponse(res, 400, false, 'Validation failed', { errors: validationErrors });
+    }
     return sendResponse(res, 500, false, 'Internal server error');
   }
 };
@@ -492,9 +671,6 @@ const searchHotels = async (req, res) => {
       starRating,
       minPrice,
       maxPrice,
-      checkIn,
-      checkOut,
-      guests,
       roomType,
       amenities,
       page = 1,
@@ -663,6 +839,7 @@ const updateAvailability = async (req, res) => {
 
 module.exports = {
   createHotel,
+  createHotelJSON,
   getAllHotels,
   getHotelById,
   updateHotel,

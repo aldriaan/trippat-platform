@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
   createHotel,
+  createHotelJSON,
   getAllHotels,
   getHotelById,
   updateHotel,
@@ -24,6 +25,7 @@ const { authenticate } = require('../middleware/auth');
 
 // Hotel CRUD operations
 router.post('/', authenticate, createHotel);
+router.post('/json', authenticate, createHotelJSON);
 router.get('/', getAllHotels);
 router.get('/search', searchHotels);
 router.get('/:id', getHotelById);
