@@ -16,8 +16,9 @@ const roomTypeSchema = new mongoose.Schema({
   },
   capacity: {
     type: Number,
-    required: true,
-    min: 1
+    required: false,
+    min: 1,
+    default: 2
   },
   bedType: {
     type: String,
@@ -26,8 +27,9 @@ const roomTypeSchema = new mongoose.Schema({
   },
   pricePerNight: {
     type: Number,
-    required: true,
-    min: 0
+    required: false,
+    min: 0,
+    default: 300
   },
   currency: {
     type: String,
@@ -36,8 +38,9 @@ const roomTypeSchema = new mongoose.Schema({
   },
   totalRooms: {
     type: Number,
-    required: true,
-    min: 1
+    required: false,
+    min: 1,
+    default: 50
   },
   amenities: [{
     type: String
