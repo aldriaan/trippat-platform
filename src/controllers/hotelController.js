@@ -68,6 +68,15 @@ const downloadImage = (url, filepath) => {
     const client = url.startsWith('https') ? https : http;
     
     const request = client.get(url, (response) => {
+      // Handle redirects (302, 301, etc.)
+      if (response.statusCode === 301 || response.statusCode === 302) {
+        const redirectUrl = response.headers.location;
+        if (redirectUrl) {
+          console.log(`Redirecting from ${url} to ${redirectUrl}`);
+          return downloadImage(redirectUrl, filepath).then(resolve).catch(reject);
+        }
+      }
+
       if (response.statusCode !== 200) {
         reject(new Error(`Failed to download image: ${response.statusCode}`));
         return;
