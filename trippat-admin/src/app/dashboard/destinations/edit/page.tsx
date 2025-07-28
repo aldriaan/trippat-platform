@@ -5,6 +5,7 @@ import AdminLayout from '@/components/shared/AdminLayout';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { Plus, Trash2, ArrowLeft, Save, Globe, MapPin } from 'lucide-react';
+import { getApiUrl } from '@/lib/api';
 
 interface City {
   _id?: string;
@@ -73,7 +74,7 @@ export default function EditDestinationPage() {
       setLoadingDestination(true);
       const token = Cookies.get('admin_token');
       
-      const response = await fetch(`http://localhost:5001/api/destinations/${destinationId}`, {
+      const response = await fetch(`${getApiUrl()}/destinations/${destinationId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -110,7 +111,7 @@ export default function EditDestinationPage() {
     
     try {
       const token = Cookies.get('admin_token');
-      const response = await fetch(`http://localhost:5001/api/destinations/${destinationId}`, {
+      const response = await fetch(`${getApiUrl()}/destinations/${destinationId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -142,7 +143,7 @@ export default function EditDestinationPage() {
 
     try {
       const token = Cookies.get('admin_token');
-      const response = await fetch(`http://localhost:5001/api/destinations/${destinationId}/cities`, {
+      const response = await fetch(`${getApiUrl()}/destinations/${destinationId}/cities`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -173,7 +174,7 @@ export default function EditDestinationPage() {
 
     try {
       const token = Cookies.get('admin_token');
-      const response = await fetch(`http://localhost:5001/api/destinations/${destinationId}/cities/${cityId}`, {
+      const response = await fetch(`${getApiUrl()}/destinations/${destinationId}/cities/${cityId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

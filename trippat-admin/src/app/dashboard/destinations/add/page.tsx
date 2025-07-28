@@ -5,6 +5,7 @@ import AdminLayout from '@/components/shared/AdminLayout';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { Plus, Trash2, ArrowLeft, Save, Globe, MapPin } from 'lucide-react';
+import { getApiUrl } from '@/lib/api';
 
 const CONTINENTS = [
   'Asia',
@@ -36,7 +37,7 @@ export default function AddDestinationPage() {
     
     try {
       const token = Cookies.get('admin_token');
-      const response = await fetch('http://localhost:5001/api/destinations', {
+      const response = await fetch(`${getApiUrl()}/destinations`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
