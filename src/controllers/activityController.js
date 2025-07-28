@@ -212,6 +212,32 @@ const createActivity = async (req, res) => {
       }
     }
 
+    // Process keywords arrays
+    if (req.body.keywords && typeof req.body.keywords === 'string') {
+      try {
+        activityData.keywords = JSON.parse(req.body.keywords);
+      } catch (e) {
+        activityData.keywords = req.body.keywords.split(',').map(k => k.trim()).filter(k => k);
+      }
+    }
+    
+    if (req.body.keywords_ar && typeof req.body.keywords_ar === 'string') {
+      try {
+        activityData.keywords_ar = JSON.parse(req.body.keywords_ar);
+      } catch (e) {
+        activityData.keywords_ar = req.body.keywords_ar.split('،').map(k => k.trim()).filter(k => k);
+      }
+    }
+
+    // Process tags array
+    if (req.body.tags && typeof req.body.tags === 'string') {
+      try {
+        activityData.tags = JSON.parse(req.body.tags);
+      } catch (e) {
+        activityData.tags = req.body.tags.split(',').map(t => t.trim()).filter(t => t);
+      }
+    }
+
     // Generate slug if not provided
     if (!activityData.slug && activityData.title) {
       activityData.slug = activityData.title
@@ -309,6 +335,32 @@ const updateActivity = async (req, res) => {
         updateData.categories = JSON.parse(req.body.categories);
       } catch (e) {
         updateData.categories = req.body.categories.split(',').map(c => c.trim()).filter(c => c);
+      }
+    }
+
+    // Process keywords arrays
+    if (req.body.keywords && typeof req.body.keywords === 'string') {
+      try {
+        updateData.keywords = JSON.parse(req.body.keywords);
+      } catch (e) {
+        updateData.keywords = req.body.keywords.split(',').map(k => k.trim()).filter(k => k);
+      }
+    }
+    
+    if (req.body.keywords_ar && typeof req.body.keywords_ar === 'string') {
+      try {
+        updateData.keywords_ar = JSON.parse(req.body.keywords_ar);
+      } catch (e) {
+        updateData.keywords_ar = req.body.keywords_ar.split('،').map(k => k.trim()).filter(k => k);
+      }
+    }
+
+    // Process tags array
+    if (req.body.tags && typeof req.body.tags === 'string') {
+      try {
+        updateData.tags = JSON.parse(req.body.tags);
+      } catch (e) {
+        updateData.tags = req.body.tags.split(',').map(t => t.trim()).filter(t => t);
       }
     }
 

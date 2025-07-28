@@ -164,6 +164,8 @@ export default function EditActivityPage() {
     metaTitle_ar: '',
     metaDescription: '',
     metaDescription_ar: '',
+    keywords: [''],
+    keywords_ar: [''],
     tags: ['']
   });
 
@@ -1351,6 +1353,157 @@ export default function EditActivityPage() {
                   <label htmlFor="instantConfirmation" className="ml-2 text-sm text-gray-700">
                     Instant confirmation
                   </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* SEO & Meta Information */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">SEO & Meta Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Meta Title */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Meta Title (English)
+                </label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={formData.metaTitle}
+                  onChange={(e) => handleInputChange('metaTitle', e.target.value)}
+                  placeholder="SEO title for search engines"
+                  maxLength={60}
+                />
+                <div className="text-xs text-gray-500 mt-1">
+                  {formData.metaTitle.length} of 60 characters
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Meta Title (Arabic)
+                </label>
+                <input
+                  type="text"
+                  dir="rtl"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={formData.metaTitle_ar}
+                  onChange={(e) => handleInputChange('metaTitle_ar', e.target.value)}
+                  placeholder="عنوان SEO لمحركات البحث"
+                  maxLength={60}
+                />
+                <div className="text-xs text-gray-500 mt-1">
+                  {formData.metaTitle_ar.length} of 60 characters
+                </div>
+              </div>
+
+              {/* Meta Description */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Meta Description (English)
+                </label>
+                <textarea
+                  rows={3}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={formData.metaDescription}
+                  onChange={(e) => handleInputChange('metaDescription', e.target.value)}
+                  placeholder="Brief description for search engines"
+                  maxLength={160}
+                />
+                <div className="text-xs text-gray-500 mt-1">
+                  {formData.metaDescription.length} of 160 characters
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Meta Description (Arabic)
+                </label>
+                <textarea
+                  rows={3}
+                  dir="rtl"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={formData.metaDescription_ar}
+                  onChange={(e) => handleInputChange('metaDescription_ar', e.target.value)}
+                  placeholder="وصف مختصر لمحركات البحث"
+                  maxLength={160}
+                />
+                <div className="text-xs text-gray-500 mt-1">
+                  {formData.metaDescription_ar.length} of 160 characters
+                </div>
+              </div>
+
+              {/* Keywords */}
+              <div className="md:col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Keywords (English)
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => addArrayItem('keywords')}
+                        className="text-indigo-600 hover:text-indigo-800"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                    {formData.keywords.map((keyword, index) => (
+                      <div key={index} className="flex items-center space-x-2 mb-2">
+                        <input
+                          type="text"
+                          className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          value={keyword}
+                          onChange={(e) => handleArrayChange('keywords', index, e.target.value)}
+                          placeholder="SEO keyword"
+                        />
+                        {formData.keywords.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeArrayItem('keywords', index)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <Minus className="h-4 w-4" />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Keywords (Arabic)
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => addArrayItem('keywords_ar')}
+                        className="text-indigo-600 hover:text-indigo-800"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                    {formData.keywords_ar.map((keyword, index) => (
+                      <div key={index} className="flex items-center space-x-2 mb-2">
+                        <input
+                          type="text"
+                          dir="rtl"
+                          className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          value={keyword}
+                          onChange={(e) => handleArrayChange('keywords_ar', index, e.target.value)}
+                          placeholder="كلمة مفتاحية لمحركات البحث"
+                        />
+                        {formData.keywords_ar.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeArrayItem('keywords_ar', index)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <Minus className="h-4 w-4" />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
